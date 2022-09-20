@@ -1,11 +1,28 @@
 .header {
   display: flex;
   padding: 45px 0 41px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84, 84, 84, 1.7);
 }
 
 .header__logo {
   width: 173px;
   height: 33px;
-  margin-left: 27px;
+}
+
+@media screen and (max-width: 925px) and (min-width: 620px) {
+  .header__logo {
+    padding-left: 27px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .header {
+    padding: 28px 0 32px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    padding-left: 27px;
+  }
 }
