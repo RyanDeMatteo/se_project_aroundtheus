@@ -1,21 +1,13 @@
 # Project 3: Around The U.S.
 
-### Overview  
+## Ryan DeMatteo
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+This mock-up photo-sharing layout was created with the intention of building a website with responsive design. Using @media queries, I designed the site work at any resolution. There were two resolutions provided in the Figma design. These resolutions were developed to specification. I enjoyed having flexibility to make decisions on design elements at different breakpoints between. Referencing [Screen Size Map](https://screensizemap.com/), I considered what every user would experience when visiting the site.
+
+[Macbook 1366 x 768](https://ibb.co/LZ98fZy)
+[iPad 768 x 1024](https://ibb.co/WpcTgQ9)
+[Mobile 360 x 720](https://ibb.co/dQGkk3B)
+
+The project is compliant with Flat BEM practices. It utilizes a combination of flexboxes and grid layouts. The photo-sharing container is designed to expand with the addition of of content. Font-sizes are scaled to shrink with the site's resolution.
+
+[GitHub](https://github.com/RyanDeMatteo/se_project_aroundtheus)
