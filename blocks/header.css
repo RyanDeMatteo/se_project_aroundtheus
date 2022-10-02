@@ -1,7 +1,7 @@
 .header {
   display: flex;
   padding: 45px 0 41px;
-  border-bottom: 1px solid rgba(84, 84, 84, 1.7);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 .header__logo {
@@ -9,7 +9,7 @@
   height: 33px;
 }
 
-@media screen and (max-width: 925px) and (min-width: 620px) {
+@media screen and (max-width: 925px) {
   .header__logo {
     padding-left: 27px;
   }

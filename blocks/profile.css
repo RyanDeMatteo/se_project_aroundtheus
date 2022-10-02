@@ -68,7 +68,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 925px) and (min-width: 820px) {
+@media screen and (max-width: 925px) {
   .profile__image {
     margin-left: 27px;
   }
@@ -78,7 +78,7 @@
   }
 }
 
-@media screen and (max-width: 820px) and (min-width: 715px) {
+@media screen and (max-width: 820px) {
   .profile__image {
     margin-left: 27px;
   }
@@ -90,7 +90,7 @@
   }
 }
 
-@media screen and (max-width: 715px) and (min-width: 620px) {
+@media screen and (max-width: 715px) {
   .profile__container {
     grid-template-columns: minmax(auto, 284px) auto;
   }
@@ -142,6 +142,7 @@
   .profile__edit-button {
     height: 18px;
     width: 18px;
+    background-size: 7.5px;
   }
 
   .profile__subtitle {
@@ -156,5 +157,6 @@
     width: 90%;
     height: 50px;
     max-width: 282px;
+    background-size: 16px;
   }
 }
