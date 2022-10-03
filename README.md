@@ -10,5 +10,4 @@ This mock-up photo-sharing layout was created with the intention of building a w
 
 The project is compliant with Flat BEM practices. It utilizes a combination of flexboxes and grid layouts. The photo-sharing container is designed to expand with the addition of of content. Font-sizes are scaled to shrink with the site's resolution.
 
-[GitHub](https://github.com/RyanDeMatteo/se_project_aroundtheus)
-[GitHub Pages](https://pages.github.com/)
+[GitHub](https://ryandematteo.github.io/se_project_aroundtheus/)
