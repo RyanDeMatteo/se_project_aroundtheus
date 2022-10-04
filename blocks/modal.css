@@ -9,7 +9,7 @@
 }
 
 .modal_opened {
-  /*display: block;*/
+  display: block;
 }
 
 .modal__container {
