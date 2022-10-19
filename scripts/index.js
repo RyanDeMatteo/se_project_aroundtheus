@@ -28,10 +28,10 @@ const editProfileForm = document.querySelector("#edit-profile-form");
 const profileTitleField = document.querySelector(".profile__title");
 const profileAboutField = document.querySelector(".profile__subtitle");
 const profileTitleInputValue = editProfileForm.querySelector(
-  ".profile__input_type_title"
+  ".modal__input_type_name"
 );
 const profileAboutInputValue = editProfileForm.querySelector(
-  ".profile__input_type_about"
+  ".modal__input_type_about"
 );
 
 const addCardButton = document.querySelector(".profile__add-button");
@@ -40,10 +40,10 @@ const addCardForm = document.querySelector("#add-card-form");
 const addCardTitleField = document.querySelector(".card__caption");
 const addCardImageField = document.querySelector(".card__image");
 const addCardTitleInputValue = addCardForm.querySelector(
-  ".card__input_type_title"
+  ".modal__input_type_title"
 );
 const addCardImageInputValue = addCardForm.querySelector(
-  "card__input_type_image"
+  "modal__input_type_image"
 );
 
 const imageModal = document.querySelector("#image-modal");
@@ -104,6 +104,7 @@ function createCard(data) {
 
   cardImage.addEventListener("click", () => {
     modalImageElement.src = data.link;
+    modalImageElement.alt = data.title;
     modalCaptionElement.textContent = data.title;
     openModal(imageModal);
   });
@@ -114,7 +115,6 @@ function createCard(data) {
     listItem.remove();
   });
 
-  cardElement.remove();
   return cardElement;
 }
 
@@ -138,11 +138,12 @@ addCardForm.addEventListener("submit", (evt) => {
     link: link,
   });
   closeAddCardModal();
+  evt.target.reset();
 });
 
 closeModalButtons.forEach((closeModalButton) => {
+  const modal = closeModalButton.closest(".modal");
   closeModalButton.addEventListener("click", (evt) => {
-    const modal = closeModalButton.closest(".modal");
     closeModal(modal);
   });
 });

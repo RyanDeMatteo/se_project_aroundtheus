@@ -3,7 +3,7 @@
   opacity: 0;
   pointer-events: none;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -15,7 +15,7 @@
   visibility: visible;
   opacity: 1;
   pointer-events: all;
-  transition: visibility 0s, opacity 0s linear;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
 .modal__container {
