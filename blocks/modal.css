@@ -31,6 +31,15 @@
   background-color: white;
 }
 
+.modal__container_type_image {
+  padding: 0;
+  display: flex;
+  background: none;
+  max-height: 75vh;
+  max-width: 75vw;
+  width: auto;
+}
+
 .modal__close-button {
   background: transparent url(../images/close.svg) center no-repeat;
   height: 40px;
@@ -94,6 +103,22 @@
 .modal__save-button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+.modal__image {
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.modal__caption {
+  position: absolute;
+  top: calc(100% + 10px);
+  margin: 0;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #fff;
 }
 
 @media screen and (max-width: 620px) {
