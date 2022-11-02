@@ -56,8 +56,11 @@ const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const modalInputs = document.querySelectorAll(".modal__input");
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape);
 }
 
 function openEditProfileModal() {
@@ -72,6 +75,7 @@ function openAddCardModal() {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
 }
 
 function closeEditProfileModal() {
@@ -146,6 +150,24 @@ closeModalButtons.forEach((closeModalButton) => {
   closeModalButton.addEventListener("click", (evt) => {
     closeModal(modal);
   });
+});
+
+function isEscEvent(evt) {
+  const activeModal = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    closeModal(activeModal);
+  }
+}
+
+function handleEscape(evt) {
+  evt.preventDefault;
+  isEscEvent(evt, closeModal);
+}
+
+document.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
 });
 
 initialCards.forEach(renderCard);
