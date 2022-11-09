@@ -56,8 +56,15 @@ const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const modalInputs = document.querySelectorAll(".modal__input");
+
+const inputElements = [...addCardModal.querySelectorAll(".modal__input")];
+const submitButton = addCardModal.querySelector(".modal__save-button");
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalOnEscape);
+  modal.addEventListener("mousedown", closeModalOnRemoteClick);
 }
 
 function fillProfileForm() {
@@ -72,13 +79,12 @@ function openEditProfileModal() {
 
 function openAddCardModal() {
   openModal(addCardModal);
-  toggleButtonState(inputElements, submitButton, {
-    inactiveButtonClass: "modal__save-button_disabled",
-  });
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalOnEscape);
+  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
 }
 
 function closeEditProfileModal() {
@@ -130,13 +136,20 @@ function renderCard(data) {
   cardListElement.prepend(cardElement);
 }
 
-editProfileButton.addEventListener("click", openEditProfileModal);
+function closeModalOnEscape(evt) {
+  if (evt.key === "Escape") {
+    const activeModal = document.querySelector(".modal_opened");
+    closeModal(activeModal);
+  }
+}
 
-editProfileForm.addEventListener("submit", editProfileInputs);
+function closeModalOnRemoteClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.target);
+  }
+}
 
-addCardButton.addEventListener("click", openAddCardModal);
-
-addCardForm.addEventListener("submit", (evt) => {
+function submitNewCard(evt) {
   evt.preventDefault();
   const title = evt.target.title.value;
   const link = evt.target.link.value;
@@ -146,7 +159,18 @@ addCardForm.addEventListener("submit", (evt) => {
   });
   closeAddCardModal();
   evt.target.reset();
-});
+  toggleButtonState(inputElements, submitButton, {
+    inactiveButtonClass: "modal__save-button_disabled",
+  });
+}
+
+editProfileButton.addEventListener("click", openEditProfileModal);
+
+editProfileForm.addEventListener("submit", editProfileInputs);
+
+addCardButton.addEventListener("click", openAddCardModal);
+
+addCardForm.addEventListener("submit", submitNewCard);
 
 closeModalButtons.forEach((closeModalButton) => {
   const modal = closeModalButton.closest(".modal");
