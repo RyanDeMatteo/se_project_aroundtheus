@@ -53,33 +53,21 @@
       <div class="modal__container">
         <button class="modal__close-button" type="button"></button>
         <h2 class="modal__title">Edit profile</h2>
-        <form class="modal__form" id="edit-profile-form" novalidate>
+        <form class="modal__form" id="edit-profile-form">
           <input
             type="text"
             class="modal__input modal__input_type_name"
-            id="profile-name"
             name="name"
-            minlength="2"
-            maxlength="40"
             placeholder="Name"
             required
           />
-          <span class="modal__error" id="profile-name-error"
-            >Please fill out this field.</span
-          >
           <input
             type="text"
             class="modal__input modal__input_type_about"
-            id="profile-about"
             name="about"
-            minlength="2"
-            maxlength="200"
             placeholder="About me"
             required
           />
-          <span class="modal__error" id="profile-about-error"
-            >Please fill out this field.</span
-          >
           <button type="submit" class="modal__save-button">Save</button>
         </form>
       </div>
@@ -88,31 +76,21 @@
       <div class="modal__container">
         <button class="modal__close-button" type="button"></button>
         <h2 class="modal__title">New place</h2>
-        <form class="modal__form" id="add-card-form" novalidate>
+        <form class="modal__form" id="add-card-form">
           <input
             type="text"
             class="modal__input modal__input_type_title"
-            id="card-title"
             name="title"
-            minlength="1"
-            maxlength="30"
             placeholder="Title"
             required
           />
-          <span class="modal__error" id="card-title-error"
-            >Please fill out this field.</span
-          >
           <input
-            type="url"
+            type="text"
             class="modal__input modal__input_type_image"
-            id="card-url"
             name="link"
             placeholder="Image link"
             required
           />
-          <span class="modal__error" id="card-url-error"
-            >Please enter a web address.</span
-          >
           <button type="submit" class="modal__save-button">Create</button>
         </form>
       </div>
@@ -135,6 +113,5 @@
       </li>
     </template>
     <script src="scripts/index.js"></script>
-    <script src="scripts/validation.js"></script>
   </body>
 </html>

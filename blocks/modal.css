@@ -71,7 +71,7 @@
   margin: 0;
   padding-left: 36px;
   padding-top: 54px;
-  gap: 12px;
+  gap: 30px;
   border: none;
 }
 
@@ -83,25 +83,6 @@
   line-height: 1.2;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.modal__input_type_error {
-  border-bottom: 1px solid red;
-}
-
-.modal__error {
-  visibility: none;
-  opacity: 0;
-  font-family: "Inter", "Arial", sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.2;
-  color: rgba(255, 0, 0, 1);
-}
-
-.modal__error_visible {
-  visibility: visible;
-  opacity: 1;
 }
 
 .modal__save-button {
@@ -122,17 +103,6 @@
 .modal__save-button:hover {
   opacity: 0.8;
   cursor: pointer;
-}
-
-.modal__save-button_disabled:hover {
-  opacity: 0.2;
-  cursor: default;
-}
-
-.modal__save-button_disabled {
-  color: rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .modal__image {

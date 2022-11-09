@@ -56,15 +56,8 @@ const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
-const modalInputs = document.querySelectorAll(".modal__input");
-
-const inputElements = addCardModal.querySelector(".modal__input");
-const submitButton = addCardModal.querySelector(".modal__save-button");
-
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalOnEscape);
-  modal.addEventListener("mousedown", closeModalOnRemoteClick);
 }
 
 function fillProfileForm() {
@@ -86,8 +79,6 @@ function openAddCardModal() {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalOnEscape);
-  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
 }
 
 function closeEditProfileModal() {
@@ -162,25 +153,6 @@ closeModalButtons.forEach((closeModalButton) => {
   closeModalButton.addEventListener("click", (evt) => {
     closeModal(modal);
   });
-});
-
-function closeModalOnEscape(evt) {
-  const activeModal = document.querySelector(".modal_opened");
-  if (evt.key === "Escape") {
-    closeModal(activeModal);
-  }
-}
-
-function closeModalOnRemoteClick(evt) {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.target);
-  }
-}
-
-document.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("modal")) {
-    closeModal(evt.target);
-  }
 });
 
 initialCards.forEach(renderCard);
