@@ -32,7 +32,7 @@ class Card {
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeIcon());
     this._element
-      .querySelector(".card__delete-button")
+      .querySelector(".card__delete-icon")
       .addEventListener("click", () => this._handleDeleteButton());
     this._element
       .querySelector(".card__image")
@@ -59,17 +59,18 @@ class Card {
 
   _getTemplate() {
     return document
-      .querySelector(this._cardSelector)
+      .querySelector("#card-template")
       .content.querySelector(".card")
       .cloneNode(true);
   }
 
   getView() {
     this._element = this._getTemplate();
+
     this._element.querySelector(
       ".card__image"
     ).style.backgroundImage = `url(${this._link})`;
-    this._element.querySelector(".card__title").textContent = this._title;
+    this._element.querySelector(".card__caption").textContent = this._title;
 
     this._setEventListeners();
   }

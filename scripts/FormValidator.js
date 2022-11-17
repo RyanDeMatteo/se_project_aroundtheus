@@ -1,7 +1,7 @@
 class FormValidator {
   constructor(config, formElement) {
-    this._inputSelector = config._inputSelector;
-    this._submitButtonSelector = config._submitButtonSelector;
+    this._inputSelector = config.inputSelector;
+    this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
@@ -25,16 +25,19 @@ class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this.inputElements)) {
-      this._submitButtonSelector.classList.add(this._inactiveButtonClass);
-      this._submitButtonSelector.disabled = true;
+      this._submitButton.classList.add(this._inactiveButtonClass);
+      this._submitButton.disabled = true;
     } else {
-      this._submitButtonSelector.classList.remove(this._inactiveButtonClass);
-      this._submitButtonSelector.disabled = false;
+      this._submitButton.classList.remove(this._inactiveButtonClass);
+      this._submitButton.disabled = false;
     }
   }
 
-  _hasInvalidInput(inputSelector) {
-    return !inputSelector.every((inputElement) => inputElement.validity.valid);
+  _hasInvalidInput() {
+    this._inputElements = [...this._form.querySelectorAll(this._inputSelector)];
+    return !this._inputElements.every(
+      (inputElement) => inputElement.validity.valid
+    );
   }
 
   _isValid(inputElement) {
@@ -46,7 +49,6 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputElements = [...this._form.querySelectorAll(this._inputSelector)];
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
 
     this._toggleButtonState(
@@ -56,7 +58,7 @@ class FormValidator {
     );
 
     this._inputElements.forEach((inputElement) => {
-      this._inputElements.addEventListener("input", (evt) => {
+      inputElement.addEventListener("input", (evt) => {
         this._isValid(this._form, this.inputElement, this.config);
         this._toggleButtonState(
           this._inputElements,

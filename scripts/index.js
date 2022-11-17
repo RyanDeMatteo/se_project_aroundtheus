@@ -3,7 +3,7 @@ import Card from "./Card.js";
 
 /* Validation */
 
-const validationConfig = {
+const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-button",
   inactiveButtonClass: "modal__save-button_disabled",
@@ -14,8 +14,8 @@ const validationConfig = {
 const editProfileForm = document.querySelector("#edit-profile-form");
 const addCardForm = document.querySelector("#add-card-form");
 
-const editFormValidator = new FormValidator(validationConfig, editProfileForm);
-const addFormValidator = new FormValidator(validationConfig, addCardForm);
+const editFormValidator = new FormValidator(config, editProfileForm);
+const addFormValidator = new FormValidator(config, addCardForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
@@ -147,7 +147,6 @@ function createCard(data) {
 }
 
 function renderCard(data) {
-  const cardElement = createCard(data);
   const card = new Card(data, cardSelector);
   cardListElement.prepend(card.getView());
 }
