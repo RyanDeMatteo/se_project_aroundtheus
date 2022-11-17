@@ -1,3 +1,31 @@
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
+
+/* Validation */
+
+const validationConfig = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editProfileForm = document.querySelector("#edit-profile-form");
+const addCardForm = document.querySelector("#add-card-form");
+
+const editFormValidator = new FormValidator(validationConfig, editProfileForm);
+const addFormValidator = new FormValidator(validationConfig, addCardForm);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+/* end validation */
+
+const cardSelector = document.querySelector("#card-template");
+
+/*end card */
+
 const initialCards = [
   {
     title: "Lago di Braies",
@@ -24,7 +52,6 @@ const initialCards = [
 
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileForm = document.querySelector("#edit-profile-form");
 const profileTitleField = document.querySelector(".profile__title");
 const profileAboutField = document.querySelector(".profile__subtitle");
 const profileTitleInputValue = editProfileForm.querySelector(
@@ -36,16 +63,6 @@ const profileAboutInputValue = editProfileForm.querySelector(
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardForm = document.querySelector("#add-card-form");
-const addCardTitleField = document.querySelector(".card__caption");
-const addCardImageField = document.querySelector(".card__image");
-const addCardTitleInputValue = addCardForm.querySelector(
-  ".modal__input_type_title"
-);
-const addCardImageInputValue = addCardForm.querySelector(
-  "modal__input_type_image"
-);
-
 const imageModal = document.querySelector("#image-modal");
 const modalImageElement = imageModal.querySelector(".modal__image");
 const modalCaptionElement = imageModal.querySelector(".modal__caption");
@@ -55,8 +72,6 @@ const closeModalButtons = document.querySelectorAll(".modal__close-button");
 const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-
-const modalInputs = document.querySelectorAll(".modal__input");
 
 const inputElements = [...addCardModal.querySelectorAll(".modal__input")];
 const submitButton = addCardModal.querySelector(".modal__save-button");
@@ -133,7 +148,8 @@ function createCard(data) {
 
 function renderCard(data) {
   const cardElement = createCard(data);
-  cardListElement.prepend(cardElement);
+  const card = new Card(data, cardSelector);
+  cardListElement.prepend(card.getView());
 }
 
 function closeModalOnEscape(evt) {
