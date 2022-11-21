@@ -1,4 +1,4 @@
-import { renderCard } from "./index.js";
+import { submitNewCard } from "./index.js";
 
 export const addCardModal = document.querySelector("#add-card-modal");
 export const imageModal = document.querySelector("#image-modal");
@@ -106,13 +106,7 @@ editProfileForm.addEventListener("submit", editProfileInputs);
 
 addCardButton.addEventListener("click", openAddCardModal);
 
-addCardForm.addEventListener("submit", () => {
-  const data = {
-    title: addCardTitleInputValue.value,
-    link: addCardImageInputValue.value,
-  };
-  renderCard(data);
-});
+addCardForm.addEventListener("submit", submitNewCard);
 
 closeModalButtons.forEach((closeModalButton) => {
   const modal = closeModalButton.closest(".modal");

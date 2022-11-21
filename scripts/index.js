@@ -69,11 +69,12 @@ export function submitNewCard(evt) {
   evt.preventDefault();
   const title = evt.target.title.value;
   const link = evt.target.link.value;
+  console.log(title, link);
   renderCard({
     title: title,
     link: link,
   });
   closeAddCardModal();
   evt.target.reset();
-  toggleButtonState(inputElements, submitButton, inactiveButtonClass);
+  // toggleButtonState(inputElements, submitButton, inactiveButtonClass); //
 }
