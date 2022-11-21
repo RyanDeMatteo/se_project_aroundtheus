@@ -13,6 +13,13 @@ const cardTemplate =
 const cardElement = cardTemplate.cloneNode(true);
 const cardImage = cardElement.querySelector(".card__image");
 
+export const addCardTitleInputValue = addCardForm.querySelector(
+  ".modal__input_type_title"
+);
+export const addCardImageInputValue = addCardForm.querySelector(
+  ".modal__input_type_image"
+);
+
 const editProfileModal = document.querySelector("#edit-profile-modal");
 
 const profileTitleField = document.querySelector(".profile__title");
@@ -100,6 +107,10 @@ editProfileForm.addEventListener("submit", editProfileInputs);
 addCardButton.addEventListener("click", openAddCardModal);
 
 addCardForm.addEventListener("submit", () => {
+  const data = {
+    title: addCardTitleInputValue.value,
+    link: addCardImageInputValue.value,
+  };
   renderCard(data);
 });
 

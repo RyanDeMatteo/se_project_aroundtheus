@@ -1,9 +1,4 @@
-import {
-  imageModal,
-  modalImageElement,
-  modalCaptionElement,
-  openModal,
-} from "./utils.js";
+import { imageModal, openModal } from "./utils.js";
 
 class Card {
   constructor(data, cardSelector) {
