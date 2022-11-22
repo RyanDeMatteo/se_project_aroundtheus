@@ -1,13 +1,7 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
-import {
-  editProfileForm,
-  addCardForm,
-  addCardModal,
-  closeAddCardModal,
-} from "./utils.js";
+import { editProfileForm, addCardForm, closeAddCardModal } from "./utils.js";
 
-/* Validation */
 export const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-button",
@@ -15,14 +9,6 @@ export const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-const editFormValidator = new FormValidator(config, editProfileForm);
-const addFormValidator = new FormValidator(config, addCardForm);
-
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
-
-/* end validation */
 
 const initialCards = [
   {
@@ -47,6 +33,8 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
 ];
+const editFormValidator = new FormValidator(config, editProfileForm);
+const addFormValidator = new FormValidator(config, addCardForm);
 
 const cardSelector = document.querySelector("#card-template");
 const cardListElement = document.querySelector(".cards__list");
@@ -55,15 +43,6 @@ export function renderCard(data) {
   const card = new Card(data, cardSelector);
   cardListElement.prepend(card.getView());
 }
-
-initialCards.forEach(renderCard);
-/*end card */
-
-const inputElements = [...addCardModal.querySelectorAll(".modal__input")];
-const submitButton = addCardModal.querySelector(".modal__save-button");
-const inactiveButtonClass = document.querySelector(
-  ".modal__save-button_disabled"
-);
 
 export function submitNewCard(evt) {
   evt.preventDefault();
@@ -76,3 +55,8 @@ export function submitNewCard(evt) {
   closeAddCardModal();
   addFormValidator.resetValidation();
 }
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+initialCards.forEach(renderCard);

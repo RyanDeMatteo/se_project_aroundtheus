@@ -1,6 +1,6 @@
 import { submitNewCard } from "./index.js";
 
-export const addCardModal = document.querySelector("#add-card-modal");
+const addCardModal = document.querySelector("#add-card-modal");
 export const imageModal = document.querySelector("#image-modal");
 export const modalImageElement = imageModal.querySelector(".modal__image");
 export const modalCaptionElement = imageModal.querySelector(".modal__caption");
@@ -34,8 +34,6 @@ const profileAboutInputValue = editProfileForm.querySelector(
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
 const closeModalButtons = document.querySelectorAll(".modal__close-button");
-
-/* modal toggle functions */
 
 export function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -90,8 +88,6 @@ function editProfileInputs(evt) {
   profileAboutField.textContent = profileAboutInputValue.value;
   closeEditProfileModal();
 }
-
-/* event listeners */
 
 cardImage.addEventListener("click", () => {
   modalImageElement.src = data.link;
