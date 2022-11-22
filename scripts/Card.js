@@ -1,4 +1,9 @@
-import { imageModal, openModal } from "./utils.js";
+import {
+  imageModal,
+  modalImageElement,
+  modalCaptionElement,
+  openModal,
+} from "./utils.js";
 
 class Card {
   constructor(data, cardSelector) {
@@ -18,15 +23,13 @@ class Card {
   getView() {
     this._element = this._getTemplate();
 
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url(${this._link})`;
+    this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._title;
     this._element.querySelector(".card__caption").textContent = this._title;
 
     this._setEventListeners();
 
-    return this._cardElement;
+    return this._element;
   }
 
   _handleLikeIcon() {
@@ -36,13 +39,13 @@ class Card {
   }
 
   _handleDeleteCard() {
-    this._element.querySelector(".card").remove();
+    this._element.remove();
   }
 
   _handlePreviewPanel() {
-    this.modalImageElement.src = this._link;
-    this.modalImageElement.alt = this._title;
-    this.modalCaptionElement.textContent = this._title;
+    modalImageElement.src = this._link;
+    modalImageElement.alt = this._title;
+    modalCaptionElement.textContent = this._title;
     openModal(imageModal);
   }
 
@@ -52,7 +55,7 @@ class Card {
       .addEventListener("click", () => this._handleLikeIcon());
     this._element
       .querySelector(".card__delete-icon")
-      .addEventListener("click", () => this._handleDeleteButton());
+      .addEventListener("click", () => this._handleDeleteCard());
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => this._handlePreviewPanel());
