@@ -27,7 +27,7 @@ class FormValidator {
     errorElement.classList.remove(this._errorClass);
   }
 
-  _isValid(inputElement) {
+  _toggleInputError(inputElement) {
     if (!inputElement.validity.valid) {
       return this._showInputError(inputElement);
     }
@@ -56,7 +56,7 @@ class FormValidator {
 
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", (evt) => {
-        this._isValid(inputElement);
+        this._toggleInputError(inputElement);
         this._toggleButtonState(
           this._inputElements,
           this._submitButton,
