@@ -1,4 +1,4 @@
-import { config } from "./index.js";
+import { config } from "./constants.js";
 
 class FormValidator {
   constructor(config, formElement) {

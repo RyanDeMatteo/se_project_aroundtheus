@@ -1,38 +1,7 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
 import { openModal, closeModal } from "./utils.js";
-
-export const config = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-const initialCards = [
-  {
-    title: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-  {
-    title: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  { title: "Latemar", link: "https://code.s3.yandex.net/web-code/latemar.jpg" },
-  {
-    title: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    title: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    title: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-];
+import { config, initialCards } from "./constants.js";
 
 export const editProfileForm = document.querySelector("#edit-profile-form");
 export const addCardForm = document.querySelector("#add-card-form");
@@ -47,11 +16,6 @@ const addCardModal = document.querySelector("#add-card-modal");
 export const imageModal = document.querySelector("#image-modal");
 export const modalImageElement = imageModal.querySelector(".modal__image");
 export const modalCaptionElement = imageModal.querySelector(".modal__caption");
-
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-const cardElement = cardTemplate.cloneNode(true);
-const cardImage = cardElement.querySelector(".card__image");
 
 export const addCardTitleInputValue = addCardForm.querySelector(
   ".modal__input_type_title"
