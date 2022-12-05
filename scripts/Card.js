@@ -1,12 +1,17 @@
+//connect Card to the popup
+//Make Card that handleCardClick() function into the constructor
+//when user clicks a card, this function will open popup with image
+
 import { openModal } from "./utils.js";
 
 import { modalImageElement, modalCaptionElement, imageModal } from "./index.js";
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor({ data, handleImageClick }, cardSelector) {
     this._title = data.title;
     this._link = data.link;
 
+    this._handleImageClick = handleImageClick;
     this._cardSelector = cardSelector;
   }
 
@@ -41,13 +46,6 @@ class Card {
     this._element = null;
   };
 
-  _handlePreviewPanel() {
-    modalImageElement.src = this._link;
-    modalImageElement.alt = this._title;
-    modalCaptionElement.textContent = this._title;
-    openModal(imageModal);
-  }
-
   _setEventListeners() {
     const likeButton = this._element.querySelector(".card__like-button");
     likeButton.addEventListener("click", this._handleLikeIcon);
@@ -55,7 +53,9 @@ class Card {
     deleteButton.addEventListener("click", this._handleDeleteCard);
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewPanel());
+      .addEventListener("click", () =>
+        this._handleImageClick({ link: this._link, text: this._title })
+      );
   }
 }
 

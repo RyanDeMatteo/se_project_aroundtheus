@@ -29,3 +29,11 @@ export const initialCards = [
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
 ];
+
+export const selectors = {
+  cardSection: "cards__list",
+  cardTemplate: ".card-template",
+  previewPopup: "modal__image",
+  editProfileForm: "#edit-profile-form",
+  addCardForm: "#add-card-form",
+};

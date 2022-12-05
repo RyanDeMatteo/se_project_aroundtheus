@@ -1,0 +1,28 @@
+{
+  "name": "se_project_aroundtheus",
+  "version": "0.0.1",
+  "description": "Educational\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D'\u001b[C\u001b[DEducational \u001b[2~f\u001b[Dplatform'",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanDeMatteo/se_project_aroundtheus.git"
+  },
+  "keywords": [
+    "\"travel",
+    "photo",
+    "sharing\""
+  ],
+  "author": "Ryan DeMatteo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanDeMatteo/se_project_aroundtheus/issues"
+  },
+  "homepage": "https://github.com/RyanDeMatteo/se_project_aroundtheus#readme",
+  "devDependencies": {
+    "webpack": "5.75.0",
+    "webpack-cli": "4.10.0"
+  }
+}
