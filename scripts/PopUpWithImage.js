@@ -1,4 +1,9 @@
-import Popup from "./Popup";
+// child of Popup
+// has to change the parent open()
+//add an image to the popup and the corresponding image src attribute
+//along with a caption for the image
+
+import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -14,7 +19,3 @@ export default class PopupWithImage extends Popup {
     super.open();
   }
 }
-// child of Popup
-// has to change the parent open()
-//add an image to the popup and the corresponding image src attribute
-//along with a caption for the image
