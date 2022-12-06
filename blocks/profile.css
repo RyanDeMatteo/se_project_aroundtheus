@@ -38,7 +38,7 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background: transparent url(../images/edit-button.svg) center no-repeat;
+  background: transparent url(../src/images/edit-button.svg) center no-repeat;
   grid-area: button;
   border: 1px solid #fff;
 }
@@ -58,7 +58,7 @@
   width: 150px;
   height: 50px;
   margin-left: auto;
-  background: transparent url(../images/add-button.svg) center no-repeat;
+  background: transparent url(../src/images/add-button.svg) center no-repeat;
   border: 2px solid #fff;
   border-radius: 2%;
 }

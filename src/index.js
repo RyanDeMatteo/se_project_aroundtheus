@@ -1,13 +1,19 @@
-import { config, selectors, initialCards } from "./constants.js";
-import { renderElements } from "./utils.js";
+import "./styles/index.css";
+import profileDefault from "../src/images/jacques-cousteau.jpg";
+
+const profilePicture = document.getElementById("profile-image");
+profilePicture.src = profileDefault;
+
+import { config, selectors, initialCards } from "../scripts/constants.js";
+import { renderElements } from "../scripts/utils.js";
 
 //import all classes
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
-import Section from "./Section.js";
-import Popup from "./Popup.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopUpWithImage.js";
+import FormValidator from "../scripts/FormValidator.js";
+import Card from "../scripts/Card.js";
+import Section from "../scripts/Section.js";
+import Popup from "../scripts/Popup.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithImage from "../scripts/PopUpWithImage.js";
 
 //create all instances of classes
 const EditFormValidator = new FormValidator(config, selectors.editProfileForm);

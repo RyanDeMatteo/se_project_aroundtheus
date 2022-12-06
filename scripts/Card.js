@@ -1,11 +1,6 @@
 //connect Card to the popup
 //Make Card that handleCardClick() function into the constructor
 //when user clicks a card, this function will open popup with image
-
-import { openModal } from "./utils.js";
-
-import { modalImageElement, modalCaptionElement, imageModal } from "./index.js";
-
 class Card {
   constructor({ data, handleImageClick }, cardSelector) {
     this._title = data.title;
