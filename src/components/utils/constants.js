@@ -36,4 +36,13 @@ export const selectors = {
   previewPopup: "modal__image",
   editProfileForm: "#edit-profile-form",
   addCardForm: "#add-card-form",
+  userNameSelector: "profile__title",
+  userAboutSelector: "profile__subtitle",
 };
+
+export const profileTitleInputValue = editProfileForm.querySelector(
+  ".modal__input_type_name"
+);
+export const profileAboutInputValue = editProfileForm.querySelector(
+  ".modal__input_type_about"
+);

@@ -40,8 +40,10 @@ const addCardButton = document.querySelector(".profile__add-button");
 const closeModalButtons = document.querySelectorAll(".modal__close-button");
 
 function fillProfileForm() {
-  profileTitleInputValue.value = profileTitleField.textContent;
-  profileAboutInputValue.value = profileAboutField.textContent;
+  const { userName, userAbout } = userInfo.getUserInfo();
+
+  profileTitleInputValue.value = userName;
+  profileAboutInputValue.value = userAbout;
 }
 
 function openEditProfileModal() {
@@ -85,7 +87,10 @@ export function submitNewCard(evt) {
   addFormValidator.resetValidation();
 }
 
-editProfileButton.addEventListener("click", openEditProfileModal);
+editProfileButton.addEventListener("click", () => {
+  fillProfileForm();
+  editFormValidator.resetValidation();
+});
 
 editProfileForm.addEventListener("submit", editProfileInputs);
 

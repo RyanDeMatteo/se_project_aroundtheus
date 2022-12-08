@@ -11,25 +11,26 @@
 //Section class does not have markup, it receives through the callback
 //function and inserts it in the container
 export default class Section {
-  constructor({ items, renderer }, selector) {
-    this._renderedItems = items;
+  constructor({ items, renderer }, containerSelector) {
+    this._items = items;
     this._renderer = renderer;
-    this._container = document.querySelector(selector);
-  }
 
-  addItem(item) {
-    this._container.prepend(item);
+    this._container = document.querySelector(containerSelector);
   }
 
   clear() {
     this._container.innerHTML = "";
   }
 
-  renderItems() {
+  renderItems(items) {
     this.clear();
 
-    this._renderedItems.forEach((item) => {
+    items.forEach((item) => {
       this._renderer(item);
     });
+  }
+
+  addItem(element) {
+    this._container.prepend(element);
   }
 }

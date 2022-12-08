@@ -8,7 +8,7 @@
 }
 
 .card__delete-icon {
-  background: transparent url(../src/images/trash-icon.svg) center no-repeat;
+  background: transparent url(../images/trash-icon.svg) center no-repeat;
   height: 18px;
   width: 18px;
   position: absolute;
@@ -51,7 +51,7 @@
 .card__like-button {
   width: 21px;
   height: 18px;
-  background: transparent url(../src/images/like-inactive.svg) center no-repeat;
+  background: transparent url(../images/like-inactive.svg) center no-repeat;
   border: none;
   overflow: visible;
 }
@@ -62,5 +62,5 @@
 }
 
 .card__like-button_active {
-  background: transparent url(../src/images/like-active.svg) center no-repeat;
+  background: transparent url(../images/like-active.svg) center no-repeat;
 }
