@@ -40,9 +40,9 @@ export const selectors = {
   userAboutSelector: "profile__subtitle",
 };
 
-export const profileTitleInputValue = editProfileForm.querySelector(
+export const profileTitleInputValue = document.querySelector(
   ".modal__input_type_name"
 );
-export const profileAboutInputValue = editProfileForm.querySelector(
+export const profileAboutInputValue = document.querySelector(
   ".modal__input_type_about"
 );

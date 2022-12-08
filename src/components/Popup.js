@@ -7,7 +7,7 @@
 
 //stores public setEventListeners("click", ) (to the close icon)
 //also works on click out
-export default class PopUp {
+export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(`.${popupSelector}`);
     this._closeButton = this._popupElement.querySelector(
