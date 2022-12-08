@@ -7,21 +7,22 @@
 
 //stores public setEventListeners("click", ) (to the close icon)
 //also works on click out
+import { closeModalButton } from "./utils/constants.js";
+
 export default class Popup {
   constructor(popupSelector) {
-    this._popupElement = document.querySelector(`.${popupSelector}`);
-    this._closeButton = this._popupElement.querySelector(
-      ".modal__close-button"
-    );
+    this._popup = document.querySelector(popupSelector);
+    this._closeButton = closeModalButton;
+    console.log(this._popup);
   }
 
   openModal() {
-    this._popupElement.classList.add("modal_opened");
+    this._popup.classList.add("modal_opened");
     document.addEventListener("keydown", this.__handleCloseOnEscape);
   }
 
   closeModal() {
-    this._popupElement.classList.remove("modal_opened");
+    this._popup.classList.remove("modal_opened");
     document.removeEventListener("keydown", this.__handleCloseOnEscape);
   }
 
@@ -38,9 +39,9 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popupElement.addEventListener("mousedown", (evt) =>
+    this._closeButton.addEventListener("click", () => this.closeModal);
+    this._popup.addEventListener("mousedown", (evt) =>
       this._closeModalOnClick(evt)
     );
-    this._closeButton.addEventListener("click", this.closeModal);
   }
 }

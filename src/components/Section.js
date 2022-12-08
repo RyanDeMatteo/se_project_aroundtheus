@@ -22,10 +22,10 @@ export default class Section {
     this._container.innerHTML = "";
   }
 
-  renderItems(items) {
+  renderItems() {
     this.clear();
 
-    items.forEach((item) => {
+    this._items.forEach((item) => {
       this._renderer(item);
     });
   }

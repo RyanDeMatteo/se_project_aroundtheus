@@ -33,11 +33,11 @@ export const initialCards = [
 export const selectors = {
   cardSection: "cards__list",
   cardTemplate: ".card-template",
-  previewPopup: "modal__image",
+  previewPopup: "#image-modal",
   editProfileForm: "#edit-profile-form",
   addCardForm: "#add-card-form",
-  userNameSelector: "profile__title",
-  userAboutSelector: "profile__subtitle",
+  userNameSelector: ".profile__title",
+  userAboutSelector: ".profile__subtitle",
 };
 
 export const profileTitleInputValue = document.querySelector(
@@ -46,3 +46,9 @@ export const profileTitleInputValue = document.querySelector(
 export const profileAboutInputValue = document.querySelector(
   ".modal__input_type_about"
 );
+
+export const editProfileButton = document.querySelector(
+  ".profile__edit-button"
+);
+export const addCardButton = document.querySelector(".profile__add-button");
+export const closeModalButton = document.querySelector(".modal__close-button");

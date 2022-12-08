@@ -16,14 +16,13 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor({ popupSelector, handleFormSubmit }) {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-    this._form = this._popupElement.querySelector(".modal__form");
     this._handleSubmit = handleFormSubmit;
-    this._inputList = Array.from(
-      this._popupElement.querySelectorAll(".modal__input")
-    );
-    this.saveButton = this._form.querySelector("modal__save-button");
+
+    this._form = this._popup.querySelector(".modal__form");
+    this._inputList = Array.from(this._form.querySelectorAll(".modal__input"));
+    this.saveButton = this._form.querySelector(".modal__save-button");
   }
 
   closeModal() {
