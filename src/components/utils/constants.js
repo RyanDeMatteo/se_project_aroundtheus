@@ -35,11 +35,14 @@ export const selectors = {
   cardTemplate: ".card-template",
   previewPopup: "#image-modal",
   editProfileForm: "#edit-profile-form",
+  addCardModal: "#card-template",
   addCardForm: "#add-card-form",
   userNameSelector: ".profile__title",
   userAboutSelector: ".profile__subtitle",
 };
 
+export const profileTitleField = document.querySelector(".profile__title");
+export const profileAboutField = document.querySelector(".profile__subtitle");
 export const profileTitleInputValue = document.querySelector(
   ".modal__input_type_name"
 );
@@ -52,3 +55,5 @@ export const editProfileButton = document.querySelector(
 );
 export const addCardButton = document.querySelector(".profile__add-button");
 export const closeModalButton = document.querySelector(".modal__close-button");
+
+export const addCardModal = document.querySelector("#card-template");
