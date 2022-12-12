@@ -1,7 +1,9 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(`${popupSelector}`);
-    this._modalElement = this._popupElement.querySelector(".modal__form");
+    console.log(this._popupElement);
+    this._formElement = this._popupElement.querySelector(".modal__form");
+    console.log(this._formElement);
     this._closeButtonElement = this._popupElement.querySelector(
       ".modal__close-button"
     );
@@ -20,7 +22,7 @@ export default class Popup {
   };
 
   _handleCloseButton() {
-    this._popupElement.classList.remove(".modal__open");
+    this._popupElement.classList.remove(".modal_opened");
     this.closeModal();
   }
 
@@ -37,8 +39,8 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._modalElement.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains(".modal__open")) {
+    this._popupElement.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains(".modal_opened")) {
         this.closeModal();
       }
       if (evt.target.classList.contains("modal")) {

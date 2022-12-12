@@ -2,8 +2,8 @@ import "./styles/index.css";
 import FormValidator from "./components/FormValidator.js";
 import Card from "./components/Card.js";
 import Section from "./components/Section.js";
-import PopupWithForm from "./components/PopupWithForm.js";
 import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 import UserInfo from "./components/UserInfo.js";
 
 import profileDefault from "./images/jacques-cousteau.jpg";
@@ -17,9 +17,6 @@ import {
   addCardButton,
   editProfileButton,
 } from "./components/utils/constants.js";
-
-const editProfileModal = document.querySelector("#edit-profile-modal");
-const addCardModal = document.querySelector("add-card-modal");
 
 import {
   handleCloseOnEscape,
@@ -66,19 +63,21 @@ CardSection.renderItems();
 // modal creation //
 const CardPreviewPopup = new PopupWithImage("#image-modal");
 
-const AddCardPopup = new PopupWithForm("#add-card-form", (data) => {
-  const newCard = { name: data.title, link: data.link };
-  const newCardElement = createCard(newCard);
-  CardSection.addNewItem(newCardElement);
-  AddCardPopup.closeModal();
+const AddCardPopup = new PopupWithForm({
+  popupSelector: selectors.addCardModal,
+  handleFormSubmit: (data) => {
+    createCard(data);
+    addCardForm.reset();
+    AddCardPopup.closeModal();
+  },
 });
 
-const EditProfilePopup = new PopupWithForm("#edit-profile-form", (data) => {
-  UserInfo.setUserInfo({
-    userName: data.title,
-    userAbout: data.about,
-  });
-  EditProfilePopup.closeModal();
+const EditProfilePopup = new PopupWithForm({
+  popupSelector: selectors.editProfileModal,
+  handleFormSubmit: (data) => {
+    UserInfo.setUserInfo(data);
+    EditProfilePopup.closeModal();
+  },
 });
 
 // modal calls //
@@ -93,15 +92,10 @@ addCardButton.addEventListener("click", () => {
 EditProfilePopup.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
-  EditProfilePopup.openModal();
-  fillProfileForm();
-});
-
-function fillProfileForm() {
   const { userName, userAbout } = HandleUserInfo.setUserInfo;
   profileTitleInputValue.value = userName;
   profileAboutInputValue.value = userAbout;
-}
+});
 
 const AddFormValidator = new FormValidator(config, selectors.addCardForm);
 

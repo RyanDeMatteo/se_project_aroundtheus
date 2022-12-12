@@ -1,7 +1,7 @@
 export const handleCloseOnEscape = (evt) => {
   if (evt.key === "Escape") {
     const activeModal = document.querySelector.contains(".modal__open");
-    this.closeModal(activeModal);
+    closeModal(activeModal);
   }
 };
 

@@ -1,6 +1,3 @@
-//connect Card to the popup
-//Make Card that handleCardClick() function into the constructor
-//when user clicks a card, this function will open popup with image
 class Card {
   constructor({ data, handleImageClick }, cardSelector) {
     this._title = data.title;
@@ -16,24 +13,10 @@ class Card {
       .content.querySelector(".card")
       .cloneNode(true);
   }
-
-  getView() {
-    this._element = this._getTemplate();
-
-    const imageElement = this._element.querySelector(".card__image");
-    const captionElement = this._element.querySelector(".card__caption");
-    this._likeButton = this._element.querySelector(".card__like-button");
-    imageElement.src = this._link;
-    imageElement.alt = this._title;
-    captionElement.textContent = this._title;
-
-    this._setEventListeners();
-
-    return this._element;
-  }
-
   _handleLikeIcon = () => {
-    this._likeButton.classList.toggle("card__like-button_active");
+    this._element
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
   };
 
   _handleDeleteCard = () => {
@@ -42,15 +25,33 @@ class Card {
   };
 
   _setEventListeners() {
-    const likeButton = this._element.querySelector(".card__like-button");
-    likeButton.addEventListener("click", this._handleLikeIcon);
-    const deleteButton = this._element.querySelector(".card__delete-icon");
-    deleteButton.addEventListener("click", this._handleDeleteCard);
     this._element
+      .querySelector(".card__like-button")
+      .addEventListener("click", () => this._handleLikeIcon);
+
+    this._element
+      .querySelector(".card__delete-icon")
+      .addEventListener("click", () => this._handleDeleteCard);
+
+    /* this._element
       .querySelector(".card__image")
       .addEventListener("click", () =>
         this._handleImageClick({ link: this._link, text: this._title })
-      );
+      ); */
+  }
+
+  getView() {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+
+    const imageElement = this._element.querySelector(".card__image");
+    const captionElement = this._element.querySelector(".card__caption");
+
+    imageElement.src = this._link;
+    imageElement.alt = this._title;
+    captionElement.textContent = this._title;
+
+    return this._element;
   }
 }
 
