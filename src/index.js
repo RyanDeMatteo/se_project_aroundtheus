@@ -15,14 +15,9 @@ import {
   profileTitleInputValue,
   profileAboutInputValue,
   addCardButton,
+  addCardForm,
   editProfileButton,
 } from "./components/utils/constants.js";
-
-import {
-  handleCloseOnEscape,
-  openModal,
-  closeModal,
-} from "./components/utils/utils.js";
 
 const profilePicture = document.getElementById("profile-image");
 profilePicture.src = profileDefault;
@@ -95,11 +90,15 @@ editProfileButton.addEventListener("click", () => {
   const { userName, userAbout } = HandleUserInfo.setUserInfo;
   profileTitleInputValue.value = userName;
   profileAboutInputValue.value = userAbout;
+  EditProfilePopup.openModal();
 });
 
-const AddFormValidator = new FormValidator(config, selectors.addCardForm);
+const AddFormValidator = new FormValidator(config, "#add-card-form");
 
-const EditFormValidator = new FormValidator(config, selectors.editProfileForm);
+const EditFormValidator = new FormValidator(config, "#edit-profile-form");
 
 EditFormValidator.enableValidation();
 AddFormValidator.enableValidation();
+
+EditFormValidator.resetValidation();
+AddFormValidator.resetValidation();

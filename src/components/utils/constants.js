@@ -37,7 +37,6 @@ export const selectors = {
   editProfileModal: "#edit-profile-modal",
   editProfileForm: "#edit-profile-form",
   addCardModal: "#add-card-modal",
-  addCardForm: "#add-card-form",
   userNameSelector: ".profile__title",
   userAboutSelector: ".profile__subtitle",
 };
@@ -58,3 +57,4 @@ export const addCardButton = document.querySelector(".profile__add-button");
 export const closeModalButton = document.querySelector(".modal__close-button");
 
 export const addCardModal = document.querySelector("#card-template");
+export const addCardForm = document.querySelector("#add-card-form");

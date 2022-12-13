@@ -33,11 +33,11 @@ class Card {
       .querySelector(".card__delete-icon")
       .addEventListener("click", () => this._handleDeleteCard);
 
-    /* this._element
+    this._element
       .querySelector(".card__image")
       .addEventListener("click", () =>
         this._handleImageClick({ link: this._link, text: this._title })
-      ); */
+      );
   }
 
   getView() {
