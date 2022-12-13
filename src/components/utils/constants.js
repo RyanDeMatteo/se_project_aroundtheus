@@ -39,6 +39,7 @@ export const selectors = {
   addCardModal: "#add-card-modal",
   userNameSelector: ".profile__title",
   userAboutSelector: ".profile__subtitle",
+  imageModal: "#image-modal",
 };
 
 export const profileName = document.querySelector(".profile__title");

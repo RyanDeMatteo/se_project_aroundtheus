@@ -62,7 +62,7 @@ const CardSection = new Section(
 CardSection.renderItems();
 
 // modal creation //
-const CardPreviewPopup = new PopupWithImage("#image-modal");
+const CardPreviewPopup = new PopupWithImage(selectors.imageModal);
 
 const AddCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
   const newCard = { name: data.title, link: data.link };
