@@ -12,8 +12,8 @@ import {
   config,
   selectors,
   initialCards,
-  profileTitleInputValue,
-  profileAboutInputValue,
+  profileName,
+  profileAbout,
   addCardButton,
   addCardForm,
   editProfileButton,
@@ -21,6 +21,12 @@ import {
 
 const profilePicture = document.getElementById("profile-image");
 profilePicture.src = profileDefault;
+
+function fillProfileForm() {
+  const { userName, userAbout } = HandleUserInfo.getUserInfo();
+  profileName.value = userName;
+  profileAbout.value = userAbout;
+}
 
 // user info //
 const HandleUserInfo = new UserInfo(
@@ -58,22 +64,24 @@ CardSection.renderItems();
 // modal creation //
 const CardPreviewPopup = new PopupWithImage("#image-modal");
 
-const AddCardPopup = new PopupWithForm({
-  popupSelector: selectors.addCardModal,
-  handleFormSubmit: (data) => {
-    createCard(data);
-    addCardForm.reset();
-    AddCardPopup.closeModal();
-  },
+const AddCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
+  const newCard = { name: data.title, link: data.link };
+  const newCardElement = createCard(newCard);
+  CardSection.addItem(newCardElement);
+  addCardForm.reset();
+  AddCardPopup.closeModal();
 });
 
-const EditProfilePopup = new PopupWithForm({
-  popupSelector: selectors.editProfileModal,
-  handleFormSubmit: (data) => {
-    UserInfo.setUserInfo(data);
+const EditProfilePopup = new PopupWithForm(
+  selectors.editProfileModal,
+  (data) => {
+    HandleUserInfo.setUserInfo({
+      userName: data.name,
+      userAbout: data.about,
+    });
     EditProfilePopup.closeModal();
-  },
-});
+  }
+);
 
 // modal calls //
 CardPreviewPopup.setEventListeners();
@@ -81,15 +89,14 @@ CardPreviewPopup.setEventListeners();
 AddCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
+  AddFormValidator._toggleButtonState();
   AddCardPopup.openModal();
 });
 
 EditProfilePopup.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
-  const { userName, userAbout } = HandleUserInfo.setUserInfo;
-  profileTitleInputValue.value = userName;
-  profileAboutInputValue.value = userAbout;
+  fillProfileForm();
   EditProfilePopup.openModal();
 });
 
@@ -98,7 +105,5 @@ const AddFormValidator = new FormValidator(config, "#add-card-form");
 const EditFormValidator = new FormValidator(config, "#edit-profile-form");
 
 EditFormValidator.enableValidation();
-AddFormValidator.enableValidation();
 
-EditFormValidator.resetValidation();
-AddFormValidator.resetValidation();
+AddFormValidator.enableValidation();
