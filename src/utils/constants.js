@@ -44,7 +44,7 @@ export const selectors = {
 
 export const profileName = document.querySelector(".profile__title");
 export const profileAbout = document.querySelector(".profile__subtitle");
-export const profileTitleInputValue = document.querySelector(
+export const profileNameInputValue = document.querySelector(
   ".modal__input_type_name"
 );
 export const profileAboutInputValue = document.querySelector(

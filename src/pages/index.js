@@ -12,8 +12,8 @@ import {
   config,
   selectors,
   initialCards,
-  profileName,
-  profileAbout,
+  profileNameInputValue,
+  profileAboutInputValue,
   addCardButton,
   editProfileButton,
 } from "../utils/constants.js";
@@ -22,9 +22,9 @@ const profilePicture = document.getElementById("profile-image");
 profilePicture.src = profileDefault;
 
 function fillProfileForm() {
-  const { userName, userAbout } = userInfo.getUserInfo();
-  profileName.value = userName;
-  profileAbout.value = userAbout;
+  const { name, about } = userInfo.getUserInfo();
+  profileNameInputValue.value = name;
+  profileAboutInputValue.value = about;
 }
 
 function renderCard(data) {
