@@ -41,13 +41,9 @@ class Card {
   };
 
   _setEventListeners() {
-    this._cardLikeButton.addEventListener("click", () =>
-      this._handleLikeIcon()
-    );
+    this._cardLikeButton.addEventListener("click", this._handleLikeIcon);
 
-    this._cardDeleteButton.addEventListener("click", () =>
-      this._handleDeleteCard()
-    );
+    this._cardDeleteButton.addEventListener("click", this._handleDeleteCard);
 
     this._cardImageButton.addEventListener("click", () =>
       this._handleImageClick(this._data)

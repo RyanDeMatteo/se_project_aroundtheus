@@ -1,4 +1,4 @@
-import { config } from "./utils/constants.js";
+import { config } from "../utils/constants.js";
 
 class FormValidator {
   constructor(config, formElement) {
@@ -31,10 +31,10 @@ class FormValidator {
 
   _toggleInputError(inputElement) {
     if (!inputElement.validity.valid) {
-      return this._showInputError(inputElement);
+      this._showInputError(inputElement);
+    } else {
+      this._hideInputError(inputElement);
     }
-
-    this._hideInputError(inputElement);
   }
 
   _hasInvalidInput() {
@@ -77,7 +77,6 @@ class FormValidator {
   }
 
   resetValidation() {
-    this._form.reset();
     this._toggleButtonState();
   }
 }
