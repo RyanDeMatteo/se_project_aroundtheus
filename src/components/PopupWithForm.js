@@ -19,6 +19,7 @@ export default class PopupWithForm extends Popup {
   }
 
   closeModal() {
+    console.log(this._modalForm);
     this._modalForm.reset();
     super.closeModal();
   }

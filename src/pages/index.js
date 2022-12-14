@@ -15,7 +15,6 @@ import {
   profileName,
   profileAbout,
   addCardButton,
-  addCardForm,
   editProfileButton,
 } from "../utils/constants.js";
 
@@ -88,7 +87,7 @@ addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
   addCardPopup.openModal();
-  addCardForm.reset();
+  addFormValidator.resetValidation();
 });
 
 editProfilePopup.setEventListeners();
