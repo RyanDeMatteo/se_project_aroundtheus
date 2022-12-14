@@ -23,12 +23,12 @@ const profilePicture = document.getElementById("profile-image");
 profilePicture.src = profileDefault;
 
 function fillProfileForm() {
-  const { userName, userAbout } = HandleUserInfo.getUserInfo();
+  const { userName, userAbout } = handleUserInfo.getUserInfo();
   profileName.value = userName;
   profileAbout.value = userAbout;
 }
 
-const HandleUserInfo = new UserInfo(
+const handleUserInfo = new UserInfo(
   selectors.userNameSelector,
   selectors.userAboutSelector
 );
@@ -38,7 +38,7 @@ const createCard = (cardObject) => {
     {
       data: cardObject,
       handleImageClick: (imgData) => {
-        CardPreviewPopup.openModal(imgData);
+        cardPreviewPopup.openModal(imgData);
       },
     },
     selectors.cardTemplate
@@ -46,69 +46,69 @@ const createCard = (cardObject) => {
   return card.getView();
 };
 
-const CardSection = new Section(
+const cardSection = new Section(
   {
     items: initialCards,
     renderer: (data) => {
       const cardElement = createCard(data);
-      CardSection.addItem(cardElement);
+      cardSection.addItem(cardElement);
     },
   },
   "#cards-list"
 );
 
-CardSection.renderItems();
+cardSection.renderItems();
 
-const CardPreviewPopup = new PopupWithImage(selectors.imageModal);
+const cardPreviewPopup = new PopupWithImage(selectors.imageModal);
 
-const AddCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
+const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
   const newCard = { title: data.title, link: data.link };
   const newCardElement = createCard(newCard);
-  CardSection.addItem(newCardElement);
+  cardSection.addItem(newCardElement);
   addCardForm.reset();
-  AddCardPopup.closeModal();
+  addCardPopup.closeModal();
 });
 
-const EditProfilePopup = new PopupWithForm(
+const editProfilePopup = new PopupWithForm(
   selectors.editProfileModal,
   (data) => {
-    HandleUserInfo.setUserInfo({
+    handleUserInfo.setUserInfo({
       userName: data.name,
       userAbout: data.about,
     });
-    EditProfilePopup.closeModal();
+    editProfilePopup.closeModal();
   }
 );
 
-CardPreviewPopup.setEventListeners();
+cardPreviewPopup.setEventListeners();
 
-AddCardPopup.setEventListeners();
+addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
-  AddCardPopup.openModal();
+  addCardPopup.openModal();
   addCardForm.reset();
-  AddFormValidator._toggleButtonState();
-  AddFormValidator.resetValidation();
+  addFormValidator._toggleButtonState();
+  addFormValidator.resetValidation();
 });
 
-EditProfilePopup.setEventListeners();
+editProfilePopup.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
   fillProfileForm();
-  EditProfilePopup.openModal();
-  EditFormValidator.resetValidation();
+  editProfilePopup.openModal();
+  editFormValidator.resetValidation();
 });
 
-const AddFormValidator = new FormValidator(
+const addFormValidator = new FormValidator(
   config,
   document.querySelector("#add-card-form")
 );
 
-const EditFormValidator = new FormValidator(
+const editFormValidator = new FormValidator(
   config,
   document.querySelector("#edit-profile-form")
 );
 
-EditFormValidator.enableValidation();
+editFormValidator.enableValidation();
 
-AddFormValidator.enableValidation();
+addFormValidator.enableValidation();

@@ -8,8 +8,9 @@ This mock-up photo-sharing layout was created with the intention of building a w
 [iPad 768 x 1024](https://ibb.co/WpcTgQ9)
 [Mobile 360 x 720](https://ibb.co/dQGkk3B)
 
-The project is compliant with Flat BEM practices. It utilizes a combination of flexboxes and grid layouts. The photo-sharing container is designed to expand with the addition of of content. Font-sizes are scaled to shrink with the site's resolution.
+The website is made dynamic using JavaScript. Users can add new cards to their
+stream and change user options. All information runs through an authentication process, and does not make amendments to HTML. The project is constructed using modular Javascript and Classes
 
-Currently, I am updating this project with JavaScript. I am working toward making the project interact with user events. More to come!
+The project is compliant with Flat BEM practices. It utilizes a combination of flexboxes and grid layouts. The photo-sharing container is designed to expand with the addition of of content. Font-sizes are scaled to shrink with the site's resolution.
 
 [GitHub](https://ryandematteo.github.io/se_project_aroundtheus/)
