@@ -65,7 +65,7 @@ CardSection.renderItems();
 const CardPreviewPopup = new PopupWithImage(selectors.imageModal);
 
 const AddCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
-  const newCard = { name: data.title, link: data.link };
+  const newCard = { title: data.title, link: data.link };
   const newCardElement = createCard(newCard);
   CardSection.addItem(newCardElement);
   addCardForm.reset();
