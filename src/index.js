@@ -89,8 +89,9 @@ CardPreviewPopup.setEventListeners();
 AddCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
-  AddFormValidator._toggleButtonState();
   AddCardPopup.openModal();
+  addCardForm.reset();
+  AddFormValidator._toggleButtonState();
 });
 
 EditProfilePopup.setEventListeners();
@@ -98,6 +99,7 @@ EditProfilePopup.setEventListeners();
 editProfileButton.addEventListener("click", () => {
   fillProfileForm();
   EditProfilePopup.openModal();
+  EditFormValidator.resetValidation();
 });
 
 const AddFormValidator = new FormValidator(config, "#add-card-form");
