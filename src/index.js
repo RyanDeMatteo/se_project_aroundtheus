@@ -28,13 +28,11 @@ function fillProfileForm() {
   profileAbout.value = userAbout;
 }
 
-// user info //
 const HandleUserInfo = new UserInfo(
   selectors.userNameSelector,
   selectors.userAboutSelector
 );
 
-// card creation //
 const createCard = (cardObject) => {
   const card = new Card(
     {
@@ -61,7 +59,6 @@ const CardSection = new Section(
 
 CardSection.renderItems();
 
-// modal creation //
 const CardPreviewPopup = new PopupWithImage(selectors.imageModal);
 
 const AddCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
@@ -83,7 +80,6 @@ const EditProfilePopup = new PopupWithForm(
   }
 );
 
-// modal calls //
 CardPreviewPopup.setEventListeners();
 
 AddCardPopup.setEventListeners();
@@ -92,6 +88,7 @@ addCardButton.addEventListener("click", () => {
   AddCardPopup.openModal();
   addCardForm.reset();
   AddFormValidator._toggleButtonState();
+  AddFormValidator.resetValidation();
 });
 
 EditProfilePopup.setEventListeners();
@@ -102,9 +99,15 @@ editProfileButton.addEventListener("click", () => {
   EditFormValidator.resetValidation();
 });
 
-const AddFormValidator = new FormValidator(config, "#add-card-form");
+const AddFormValidator = new FormValidator(
+  config,
+  document.querySelector("#add-card-form")
+);
 
-const EditFormValidator = new FormValidator(config, "#edit-profile-form");
+const EditFormValidator = new FormValidator(
+  config,
+  document.querySelector("#edit-profile-form")
+);
 
 EditFormValidator.enableValidation();
 

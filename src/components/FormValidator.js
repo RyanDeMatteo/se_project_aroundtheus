@@ -8,11 +8,11 @@ class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
 
-    this._form = document.querySelector(`${formElement}`);
+    this._form = formElement;
     this._inputElements = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
-    this._submitButton = document.querySelector(this._submitButtonSelector);
+    this._submitButton = this._form.querySelector(this._submitButtonSelector);
   }
 
   _showInputError(inputElement) {
