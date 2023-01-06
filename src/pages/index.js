@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 import profileDefault from "../images/jacques-cousteau.jpg";
 
@@ -17,6 +18,16 @@ import {
   addCardButton,
   editProfileButton,
 } from "../utils/constants.js";
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.com/v1/group-42",
+  headers: {
+    authorization: "fa002eaa-cfdc-49b2-ba7a-7640eb468742",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards;
 
 const profilePicture = document.getElementById("profile-image");
 profilePicture.src = profileDefault;
