@@ -27,10 +27,11 @@ const api = new Api({
   },
 });
 
-api.getInitialCards;
-
 const profilePicture = document.getElementById("profile-image");
 profilePicture.src = profileDefault;
+
+let currentUserId = null;
+let cardSection = null;
 
 function fillProfileForm() {
   const { name, about } = userInfo.getUserInfo();
@@ -51,17 +52,35 @@ const userInfo = new UserInfo(
 const createCard = (cardObject) => {
   const card = new Card(
     {
-      data: cardObject,
+      data: { cardObject, currentUserId },
       handleImageClick: (imgData) => {
         cardPreviewPopup.openModal(imgData);
       },
+      handleLikeClick: ({ id, isLiked }) => {
+        api
+          .toggleLikeStatus(id, isLiked)
+          .then((res) => card.UpdateLikes(res))
+          .then((err) => console.log(err));
+      },
+      handleDeleteClick: (id) => {
+        deleteCard(id)
+          .then(() => {
+            card.remove();
+            deletePopup.close();
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            deletePopup.renderLoading(false);
+          });
+      },
     },
-    selectors.cardTemplate
+    selectors.cardTemplate,
+    profile.id
   );
   return card.getView();
 };
 
-const cardSection = new Section(
+/* const cardSection = new Section(
   {
     items: initialCards,
     renderer: (data) => {
@@ -69,7 +88,7 @@ const cardSection = new Section(
     },
   },
   "#cards-list"
-);
+); */
 
 cardSection.renderItems();
 
