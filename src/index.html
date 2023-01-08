@@ -123,6 +123,15 @@
         <p class="modal__caption"></p>
       </div>
     </div>
+    <div class="modal" id="delete-modal">
+      <div class="modal__container .modal__container_type_delete">
+        <form class="modal__form" name="deletePopup" novalidate>
+          <h3 class="modal__header">Are You Sure?</h4>
+            <input class="modal__input" name="cardId" type="text">
+        </form>
+        <button class="modal__close-button" type="button"></button>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <button class="card__delete-icon" type="button"></button>
