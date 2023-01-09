@@ -21,7 +21,7 @@ import {
 } from "../utils/constants.js";
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.com/v1/group-42",
+  baseUrl: "https://around.nomoreparties.co/v1/group-42",
   headers: {
     authorization: "fa002eaa-cfdc-49b2-ba7a-7640eb468742",
     "Content-Type": "application/json",
@@ -38,9 +38,6 @@ const userInfo = new UserInfo(
   selectors.userNameSelector,
   selectors.userAboutSelector
 );
-
-const deletePopup = new PopupWithFormSubmit(selectors.deletePopup);
-deletePopup.setEventListeners();
 
 const createCard = (cardObject) => {
   const card = new Card(
@@ -137,7 +134,7 @@ const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
     })
     .catch((err) => console.log(err))
     .finally(() => {
-      addCardForm.renderLoading(false);
+      addCardPopup.renderLoading(false);
     });
 });
 
@@ -185,3 +182,13 @@ const editFormValidator = new FormValidator(
 );
 
 editFormValidator.enableValidation();
+
+const profilePictureValidator = new FormValidator(
+  config,
+  document.querySelector("#profile-picture-form")
+);
+
+profilePictureValidator.enableValidation();
+
+const deletePopup = new PopupWithFormSubmit(selectors.deleteModal);
+deletePopup.setEventListeners();

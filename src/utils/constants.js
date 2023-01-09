@@ -40,7 +40,8 @@ export const selectors = {
   userNameSelector: ".profile__title",
   userAboutSelector: ".profile__subtitle",
   imageModal: "#image-modal",
-  deleteModal: "delete-modal",
+  deleteModal: "#delete-modal",
+  profilePictureForm: "profile-picture-form",
 };
 
 export const profileName = document.querySelector(".profile__title");
