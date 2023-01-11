@@ -24,7 +24,7 @@ export default class PopupWithForm extends Popup {
     super.closeModal();
   }
 
-  renderLoading(isLoading, loadingText = "Loading...") {
+  renderLoading(isLoading, loadingText = "Saving...") {
     if (isLoading) {
       this._saveButton.textContent = loadingText;
     } else {

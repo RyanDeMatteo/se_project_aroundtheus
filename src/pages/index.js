@@ -106,10 +106,12 @@ api.getAppInfo().then(([cardsArray, userData]) => {
 
 const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
   addCardPopup.renderLoading(true);
+  debugger;
   api
     .addNewCard(data)
     .then((data) => {
       const card = createCard(data, data.owner_id);
+      console.log(data);
       cardSection.addItem(card);
       addCardForm.reset();
       addCardPopup.closeModal();

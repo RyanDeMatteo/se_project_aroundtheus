@@ -10,7 +10,7 @@ export default class PopupWithFormSubmit extends Popup {
     this._handleSubmitCallback = action;
   }
 
-  renderLoading(isLoading, loadingText = "Loading...") {
+  renderLoading(isLoading, loadingText = "Saving...") {
     if (isLoading) {
       this._saveButton.textContent = loadingText;
     } else {
