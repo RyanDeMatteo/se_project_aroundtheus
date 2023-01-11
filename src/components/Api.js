@@ -11,6 +11,10 @@ export default class Api {
     return Promise.reject(`Error ${res.status}`);
   }
 
+  getAppInfo() {
+    return Promise.all([this.getInitialCards(), this.getUserData()]);
+  }
+
   getUserData() {
     return fetch(`${this.url}/users/me`, {
       headers: this.headers,
@@ -20,6 +24,29 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this.url}/cards`, {
       headers: this.headers,
+    }).then(this._handleServerResponse);
+  }
+
+  addNewCard({ title, link }) {
+    return fetch(`${this.url}/cards`, {
+      headers: this.headers,
+      method: "POST",
+      body: JSON.stringify({ name: title, link }),
+    }).then(this._handleServerResponse);
+  }
+
+  deleteCard(id) {
+    return fetch(`${this.url}/cards/${id}`, {
+      headers: this.headers,
+      method: "DELETE",
+    }).then(this._handleServerResponse);
+  }
+
+  toggleLikeStatus(id, isLiked) {
+    console.log(id);
+    return fetch(`${this.url}/cards/${id}`, {
+      headers: this.headers,
+      method: isLiked ? "DELETE" : "PUT",
     }).then(this._handleServerResponse);
   }
 
@@ -34,34 +61,12 @@ export default class Api {
     }).then(this._handleServerResponse);
   }
 
-  addNewCard(data) {
-    return fetch(`${this.url}/cards/`, {
-      headers: this.headers,
-      method: "POST",
-      body: JSON.stringify({ title: data.title, link: data.link }),
-    }).then(this._handleServerResponse);
-  }
-
-  deleteCard(id) {
-    return fetch(`${this.url}/cards/${id}`, {
-      headers: this.headers,
-      method: "DELETE",
-    }).then(this._handleServerResponse);
-  }
-
-  toggleLikeStatus(id, isLiked) {
-    return fetch(`${this.url}/cards/${id}`, {
-      headers: this.headers,
-      method: isLiked ? "DELETE" : "PUT",
-    }).then(this._handleServerResponse);
-  }
-
-  updateProfilePicture(url) {
+  setAvatar({ avatar }) {
     return fetch(`${this.url}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
-        avatar: url,
+        avatar,
       }),
     }).then(this._handleServerResponse);
   }

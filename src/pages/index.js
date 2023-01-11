@@ -13,7 +13,6 @@ import profileDefault from "../images/jacques-cousteau.jpg";
 import {
   config,
   selectors,
-  initialCards,
   profile,
   profileNameInputValue,
   profileAboutInputValue,
@@ -31,11 +30,11 @@ const api = new Api({
   },
 });
 
-let currentUserId = null;
+let userId = null;
 let cardSection = null;
 
-const profilePicture = document.getElementById("profile-image");
-profilePicture.src = profileDefault;
+/* const profilePicture = document.getElementById("profile-image");
+profilePicture.src = profileDefault; */
 
 const userInfo = new UserInfo(
   selectors.userNameSelector,
@@ -43,34 +42,36 @@ const userInfo = new UserInfo(
   selectors.userAvatarSelector
 );
 
-const createCard = (cardObject) => {
+const createCard = (data, userId) => {
   const card = new Card(
     {
-      data: { cardObject, currentUserId },
+      data: data,
+      userId: userId,
       handleImageClick: (imgData) => {
         cardPreviewPopup.openModal(imgData);
       },
-      handleLikeClick: ({ id, isLiked }) => {
-        api
-          .toggleLikeStatus(id, isLiked)
-          .then((res) => card.UpdateLikes(res))
-          .then((err) => console.log(err));
-      },
-      handleDeleteClick: (id) => {
+      handleDeleteClick: () => {
+        const id = card.getCardId();
         deletePopup.openModal();
         deletePopup.setSubmitAction(() => {
           deletePopup.renderLoading(true);
           api
             .deleteCard(id)
             .then(() => {
-              card.remove();
-              deletePopup.close();
+              card.handleDeleteCard();
+              deletePopup.closeModal();
             })
             .catch((err) => console.log(err))
             .finally(() => {
               deletePopup.renderLoading(false);
             });
         });
+      },
+      handleLikeClick: ({ id, isLiked }) => {
+        api
+          .toggleLikeStatus(card.getCardId(), !card.isLiked())
+          .then((res) => card.UpdateLikes(res.likes))
+          .then((err) => console.log(err));
       },
     },
     selectors.cardTemplate,
@@ -85,51 +86,36 @@ function fillProfileForm() {
   profileAboutInputValue.value = about;
 }
 
-function userData() {
-  api.getUserData().then((res) => {
-    currentUserId = res._id;
-    userInfo.setUserInfo({
-      userName: res.name,
-      userAbout: res.about,
-      userAvatar: res.avatar,
-    });
-    profile.setAttribute("id", res._id);
+api.getAppInfo().then(([cardsArray, userData]) => {
+  userInfo.setUserInfo({
+    userName: userData.name,
+    userAbout: userData.about,
   });
-}
 
-userData();
+  const userAvatar = userData.avatar;
+  userInfo.setAvatar(userAvatar);
 
-function renderCard(data) {
-  const cardData = createCard(data);
-  cardSection.addItem(cardData);
-}
-
-Promise.all([api.getInitialCards(), api.getUserData()])
-  .then(([cardsArray, userData]) => {
-    userInfo.setUserInfo({
-      userName: userData.name,
-      userAbout: userData.about,
-      userAvatar: userData.avatar,
-    });
-    cardSection = new Section(
-      {
-        items: cardsArray,
-        renderer: (data) => {
-          renderCard(data);
-        },
+  userId = userData._id;
+  cardSection = new Section(
+    {
+      items: cardsArray,
+      renderer: (data) => {
+        const card = createCard(data, userId);
+        cardSection.addNewItem(card);
       },
-      "#cards-list"
-    );
-    cardSection.renderItems();
-  })
-  .catch((err) => console.log(err));
+    },
+    selectors.cardSection
+  );
+  cardSection.renderItems();
+});
 
 const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
-  const newCard = { title: data.title, link: data.link };
+  addCardPopup.renderLoading(true);
   api
-    .addNewCard(newCard)
-    .then((res) => {
-      renderCard(res);
+    .addNewCard(data)
+    .then((data) => {
+      const card = createCard(data, data.owner_id);
+      cardSection.addItem(card);
       addCardForm.reset();
       addCardPopup.closeModal();
     })
@@ -139,20 +125,17 @@ const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
     });
 });
 
-const avatarModal = new PopupWithForm(
-  selectors.userAvatarSelector,
-  (avatar) => {
-    avatarModal.renderLoading(true);
-    api
-      .setUserInfo(avatar)
-      .then((avatar) => {
-        userInfo.setAvatar(avatar);
-        avatarModal.closeModal();
-      })
-      .catch((err) => console.log(err))
-      .finally(() => avatarModal.renderLoading(false));
-  }
-);
+const avatarModal = new PopupWithForm(selectors.userAvatarModal, (avatar) => {
+  avatarModal.renderLoading(true);
+  api
+    .setAvatar(avatar)
+    .then((avatar) => {
+      userInfo.setAvatar(avatar);
+      avatarModal.closeModal();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => avatarModal.renderLoading(false));
+});
 
 const editProfilePopup = new PopupWithForm(
   selectors.editProfileModal,
@@ -183,6 +166,8 @@ const cardPreviewPopup = new PopupWithImage(selectors.imageModal);
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 cardPreviewPopup.setEventListeners();
+deletePopup.setEventListeners();
+avatarModal.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
   fillProfileForm();
@@ -196,6 +181,7 @@ addCardButton.addEventListener("click", () => {
 
 avatarIcon.addEventListener("click", () => {
   avatarModal.openModal();
+  avatarValidator.resetValidation();
 });
 
 const addFormValidator = new FormValidator(
@@ -206,11 +192,25 @@ const editFormValidator = new FormValidator(
   config,
   document.querySelector("#edit-profile-form")
 );
-const profilePictureValidator = new FormValidator(
+const avatarValidator = new FormValidator(
   config,
   document.querySelector("#avatar-form")
 );
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-profilePictureValidator.enableValidation();
+avatarValidator.enableValidation();
+
+/* function userData() {
+  api.getUserData().then((res) => {
+    userId = res._id;
+    userInfo.setUserInfo({
+      userName: res.name,
+      userAbout: res.about,
+      userAvatar: res.avatar,
+    });
+    profile.setAttribute("id", res._id);
+  });
+}
+
+userData();*/
