@@ -43,10 +43,9 @@ export default class Api {
   }
 
   toggleLikeStatus(id, isLiked) {
-    console.log(id);
-    return fetch(`${this.url}/cards/${id}`, {
+    return fetch(`${this.url}/cards/likes/${id}`, {
       headers: this.headers,
-      method: isLiked ? "DELETE" : "PUT",
+      method: isLiked ? "PUT" : "DELETE",
     }).then(this._handleServerResponse);
   }
 

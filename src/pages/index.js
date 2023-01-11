@@ -8,8 +8,6 @@ import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
-import profileDefault from "../images/jacques-cousteau.jpg";
-
 import {
   config,
   selectors,
@@ -32,9 +30,6 @@ const api = new Api({
 
 let userId = null;
 let cardSection = null;
-
-/* const profilePicture = document.getElementById("profile-image");
-profilePicture.src = profileDefault; */
 
 const userInfo = new UserInfo(
   selectors.userNameSelector,
@@ -67,11 +62,11 @@ const createCard = (data, userId) => {
             });
         });
       },
-      handleLikeClick: ({ id, isLiked }) => {
+      handleLikeClick: () => {
         api
           .toggleLikeStatus(card.getCardId(), !card.isLiked())
-          .then((res) => card.UpdateLikes(res.likes))
-          .then((err) => console.log(err));
+          .then((res) => card.setLikes(res.likes))
+          .catch((err) => console.log(err));
       },
     },
     selectors.cardTemplate,
@@ -119,7 +114,7 @@ const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
       addCardForm.reset();
       addCardPopup.closeModal();
     })
-    .catch((err) => console.log(err))
+
     .finally(() => {
       addCardPopup.renderLoading(false);
     });
@@ -129,8 +124,8 @@ const avatarModal = new PopupWithForm(selectors.userAvatarModal, (avatar) => {
   avatarModal.renderLoading(true);
   api
     .setAvatar(avatar)
-    .then((avatar) => {
-      userInfo.setAvatar(avatar);
+    .then((user) => {
+      userInfo.setAvatar(user.avatar);
       avatarModal.closeModal();
     })
     .catch((err) => console.log(err))
@@ -200,17 +195,3 @@ const avatarValidator = new FormValidator(
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarValidator.enableValidation();
-
-/* function userData() {
-  api.getUserData().then((res) => {
-    userId = res._id;
-    userInfo.setUserInfo({
-      userName: res.name,
-      userAbout: res.about,
-      userAvatar: res.avatar,
-    });
-    profile.setAttribute("id", res._id);
-  });
-}
-
-userData();*/

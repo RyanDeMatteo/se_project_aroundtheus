@@ -41,38 +41,7 @@ export const editProfileButton = document.querySelector(
 );
 export const addCardButton = document.querySelector(".profile__add-button");
 export const closeModalButton = document.querySelector(".modal__close-button");
-export const avatarIcon = document.querySelector(".profile__image");
+export const avatarIcon = document.querySelector(".profile__avatar-edit");
 
 export const addCardModal = document.querySelector("#card-template");
 export const addCardForm = document.querySelector("#add-card-form");
-/*    if (this._likes.includes(this._userId)) {
-      this._isLiked = true;
-    } else {
-      this._isLiked = false;
-    }
-
-      updateLikes(res) {
-    this.likes = res.likes;
-    this._cardLikesCounter.textContent = `${this._likes.length}`;
-    this._cardLikeButton.classList.toggle("card__like-button_active");
-  }
-
-    _checkLikeStatus = () => {
-    for (let i = 0; i < this.likes.length; i++) {
-      if (this._likes[i]._id === this._userId) {
-        this._isLiked = true;
-        this._cardLikeButton.classList.toggle("card__like-button_active");
-        return;
-      }
-    }
-  };
-
-    _checkCardOwnerId = () => {
-    if (this.userId !== this._ownerId) {
-      this._cardTrashButton.remove();
-      this._cardTrashButton = null;
-    } else {
-      return;
-    }
-  };
-*/

@@ -48,6 +48,11 @@
   overflow: hidden;
 }
 
+.card__like-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .card__like-button {
   width: 21px;
   height: 18px;
@@ -63,4 +68,16 @@
 
 .card__like-button_active {
   background: transparent url(../images/like-active.svg) center no-repeat;
+}
+
+.card__like-counter {
+  margin: 0;
+  padding-top: 3px;
+  color: black;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
 }

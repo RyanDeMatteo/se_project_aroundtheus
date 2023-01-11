@@ -3,7 +3,7 @@
   opacity: 0;
   pointer-events: none;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -38,6 +38,16 @@
   max-height: 75vh;
   max-width: 75vw;
   width: auto;
+}
+
+.modal__container_type_delete {
+  background-color: #fff;
+  color: #000;
+  margin: 0 auto;
+  max-width: 430px;
+  height: 225px;
+  padding: 0;
+  border-radius: 10px;
 }
 
 .modal__close-button {
