@@ -81,28 +81,31 @@ function fillProfileForm() {
   profileAboutInputValue.value = about;
 }
 
-api.getAppInfo().then(([cardsArray, userData]) => {
-  userInfo.setUserInfo({
-    userName: userData.name,
-    userAbout: userData.about,
-  });
+api
+  .getAppInfo()
+  .then(([cardsArray, userData]) => {
+    userInfo.setUserInfo({
+      userName: userData.name,
+      userAbout: userData.about,
+    });
 
-  const userAvatar = userData.avatar;
-  userInfo.setAvatar(userAvatar);
+    const userAvatar = userData.avatar;
+    userInfo.setAvatar(userAvatar);
 
-  userId = userData._id;
-  cardSection = new Section(
-    {
-      items: cardsArray,
-      renderer: (data) => {
-        const card = createCard(data, userId);
-        cardSection.addNewItem(card);
+    userId = userData._id;
+    cardSection = new Section(
+      {
+        items: cardsArray,
+        renderer: (data) => {
+          const card = createCard(data, userId);
+          cardSection.addNewItem(card);
+        },
       },
-    },
-    selectors.cardSection
-  );
-  cardSection.renderItems();
-});
+      selectors.cardSection
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => console.log(err));
 
 const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
   addCardPopup.renderLoading(true);
@@ -112,10 +115,9 @@ const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
     .then((data) => {
       const card = createCard(data, data.owner._id);
       cardSection.addItem(card);
-      addCardForm.reset();
       addCardPopup.closeModal();
     })
-
+    .catch((err) => console.log(err))
     .finally(() => {
       addCardPopup.renderLoading(false);
     });

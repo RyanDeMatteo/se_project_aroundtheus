@@ -54,16 +54,12 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    this._toggleButtonState(this._inputElements, this._submitButton, config);
+    this._toggleButtonState();
 
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", (evt) => {
         this._toggleInputError(inputElement);
-        this._toggleButtonState(
-          this._inputElements,
-          this._submitButton,
-          config
-        );
+        this._toggleButtonState();
       });
     });
   }
@@ -73,11 +69,15 @@ class FormValidator {
       evt.preventDefault();
     });
 
-    this._setEventListeners(this._form, config);
+    this._setEventListeners();
   }
 
   resetValidation() {
     this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
   }
 }
 

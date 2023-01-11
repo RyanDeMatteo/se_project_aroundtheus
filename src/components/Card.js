@@ -28,18 +28,17 @@ class Card {
   getView() {
     this._element = this._getTemplate();
 
-    const imageElement = this._element.querySelector(".card__image");
-    const captionElement = this._element.querySelector(".card__caption");
+    this._captionElement = this._element.querySelector(".card__caption");
     this._cardLikeButton = this._element.querySelector(".card__like-button");
     this._cardDeleteButton = this._element.querySelector(".card__delete-icon");
-    this._cardImageButton = this._element.querySelector(".card__image");
+    this._cardImage = this._element.querySelector(".card__image");
     this._cardLikesCounter = this._element.querySelector(".card__like-counter");
 
     this._setEventListeners();
 
-    imageElement.src = this._link;
-    imageElement.alt = this._title;
-    captionElement.textContent = this._title;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._title;
+    this._captionElement.textContent = this._title;
 
     this._renderLikes();
 
@@ -82,7 +81,7 @@ class Card {
       this._handleDeleteClick()
     );
 
-    this._cardImageButton.addEventListener("click", () =>
+    this._cardImage.addEventListener("click", () =>
       this._handleImageClick({ title: this._title, link: this._link })
     );
   }
