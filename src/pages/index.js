@@ -16,7 +16,6 @@ import {
   profileAboutInputValue,
   addCardButton,
   editProfileButton,
-  addCardForm,
   avatarIcon,
 } from "../utils/constants.js";
 
@@ -109,7 +108,6 @@ api
 
 const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
   addCardPopup.renderLoading(true);
-  debugger;
   api
     .addNewCard(data)
     .then((data) => {
