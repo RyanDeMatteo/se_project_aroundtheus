@@ -110,8 +110,7 @@ const addCardPopup = new PopupWithForm(selectors.addCardModal, (data) => {
   api
     .addNewCard(data)
     .then((data) => {
-      const card = createCard(data, data.owner_id);
-      console.log(data);
+      const card = createCard(data, data.owner._id);
       cardSection.addItem(card);
       addCardForm.reset();
       addCardPopup.closeModal();
